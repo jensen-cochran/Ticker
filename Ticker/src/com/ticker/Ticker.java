@@ -3,10 +3,12 @@ package com.ticker;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ToggleButton;
 import android.widget.TextView;
+import android.widget.EditText;
 
 public class Ticker extends Activity {
 	
@@ -17,6 +19,7 @@ public class Ticker extends Activity {
 	private boolean startFlag;
 	private ToggleButton switchOn;
 	private TextView moneyEarned;
+	private EditText wageBox;
 	
 	private int deltaTime = 100;
 
@@ -37,15 +40,26 @@ public class Ticker extends Activity {
         
         switchOn = (ToggleButton) findViewById(R.id.switchOn);
         moneyEarned = (TextView) findViewById(R.id.moneyView);
+        wageBox = (EditText) findViewById(R.id.wageBox);
         
         ticker = new Tick(9000.00);
         ticker.setDisplay(moneyEarned);
+        wageBox.setText(String.valueOf(9000.00));
         
         switchOn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				startFlag = startFlag ? false : true;
+			}
+		});
+        
+        wageBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				ticker.setWage(Float.parseFloat(wageBox.getText().toString()));
+				return false;
 			}
 		});
         

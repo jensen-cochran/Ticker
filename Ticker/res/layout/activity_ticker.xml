@@ -8,17 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Ticker" >
 
-    <TextView
-        android:id="@+id/moneyView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
-        android:text="@android:string/untitled"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp" />
-
     <ToggleButton
         android:id="@+id/switchOn"
         android:layout_width="wrap_content"
@@ -26,8 +15,30 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="65dp"
-        android:text="ToggleButton"
         android:textOff="Ticker Off"
         android:textOn="Ticker On" />
+
+    <TextView
+        android:id="@+id/moneyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="113dp"
+        android:text="@android:string/untitled"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp" />
+
+    <EditText
+        android:id="@+id/wageBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="Wage:" >
+    </EditText>
 
 </RelativeLayout>
