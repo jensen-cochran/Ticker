@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/home/tlanclos/sandbox/Ticker/.metadata/.plugins/org.eclipse.jdt.core
+2833315556.index
+3040223549.index
+2523526251.index
