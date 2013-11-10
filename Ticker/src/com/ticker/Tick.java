@@ -1,5 +1,7 @@
 package com.ticker;
 
+import android.widget.TextView;
+
 public class Tick {
 
 	private static int millisecondsPerHour = 3600000;
@@ -8,6 +10,8 @@ public class Tick {
 	private double wage;
 	private double rate;
 	private int deltaTime;
+	
+	private TextView display;
 
 	public Tick() {
 		cash = 0;
@@ -27,6 +31,11 @@ public class Tick {
 		wage = _wage;
 		setRate();
 	}
+	
+	public void setDisplay(TextView _display) {
+		display = _display;
+		update(0);
+	}
 
 	public double getCash() {
 		return cash;
@@ -40,5 +49,6 @@ public class Tick {
 		deltaTime = _deltaTime;
 		setRate();
 		cash += rate;
+		display.setText(String.format("$%.2f", getCash()));
 	}
 }

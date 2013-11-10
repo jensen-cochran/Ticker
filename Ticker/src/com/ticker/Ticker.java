@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ToggleButton;
 import android.widget.TextView;
 
 public class Ticker extends Activity {
@@ -15,7 +15,7 @@ public class Ticker extends Activity {
 	private Tick ticker;
 	
 	private boolean startFlag;
-	private Button startButton;
+	private ToggleButton switchOn;
 	private TextView moneyEarned;
 	
 	private int deltaTime = 100;
@@ -33,14 +33,15 @@ public class Ticker extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticker);
         
-        ticker = new Tick(7.25);
-        
         startFlag = false;
         
-        startButton = (Button) findViewById(R.id.buttonStart);
+        switchOn = (ToggleButton) findViewById(R.id.switchOn);
         moneyEarned = (TextView) findViewById(R.id.moneyView);
         
-        startButton.setOnClickListener(new View.OnClickListener() {
+        ticker = new Tick(9000.00);
+        ticker.setDisplay(moneyEarned);
+        
+        switchOn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -63,7 +64,6 @@ public class Ticker extends Activity {
     private void updateStatus(int _deltaTime) {
     	if (startFlag) {
     		ticker.update(_deltaTime);
-    		moneyEarned.setText(String.valueOf(ticker.getCash()));
     	}
     		
     }
