@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.app.Activity;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ToggleButton;
 import android.widget.TextView;
@@ -19,7 +20,6 @@ public class Ticker extends Activity {
 	private boolean startFlag;
 	private ToggleButton switchOn;
 	private TextView moneyEarned;
-	private EditText wageBox;
 	
 	private int deltaTime = 100;
 
@@ -40,26 +40,15 @@ public class Ticker extends Activity {
         
         switchOn = (ToggleButton) findViewById(R.id.switchOn);
         moneyEarned = (TextView) findViewById(R.id.moneyView);
-        wageBox = (EditText) findViewById(R.id.wageBox);
         
         ticker = new Tick(9000.00);
         ticker.setDisplay(moneyEarned);
-        wageBox.setText(String.valueOf(9000.00));
         
         switchOn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				startFlag = startFlag ? false : true;
-			}
-		});
-        
-        wageBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-			
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				ticker.setWage(Float.parseFloat(wageBox.getText().toString()));
-				return false;
 			}
 		});
         
@@ -72,7 +61,17 @@ public class Ticker extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.ticker, menu);
-        return true;    	
+        
+        menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				setContentView(R.layout.activity_settings);
+				return false;
+			}
+		});
+        
+        return true;
     }
     
     private void updateStatus(int _deltaTime) {
